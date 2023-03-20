@@ -11,7 +11,7 @@ import SwiftUI
 struct Nano1_BChillingApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            SplashScreen()
         }
     }
 }
