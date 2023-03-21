@@ -12,7 +12,6 @@ struct SplashScreen: View {
     @State var  isActive = false;
     @State var size = 0.8;
     @State var opacity = 0.2;
-    
     var body: some View {
         
         if isActive {
@@ -41,3 +40,9 @@ struct SplashScreen: View {
     }
 }
 
+
+struct Previews_SplashScreen_Previews: PreviewProvider {
+    static var previews: some View {
+        SplashScreen()
+    }
+}
