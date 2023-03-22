@@ -9,13 +9,22 @@ import SwiftUI
 
 struct Home: View {
     
-    @State var p1Name = ""
-    @State var p2Name = ""
-    @State var p3Name = ""
+    @StateObject var playersData = PlayersData();
     
     @State var degress : Double = 0
     
-//    @State var avocadoStyle : String = "";
+    @State var stPerstEmo : Bool = true;
+    @State var stPerndEmo : Bool = true;
+    @State var stPerrdEmo : Bool = true;
+    
+    @State var ndPerstEmo : Bool = true;
+    @State var ndPerndEmo : Bool = true;
+    @State var ndPerrdEmo : Bool = true;
+    
+    @State var rdPerstEmo : Bool = true;
+    @State var rdPerndEmo : Bool = true;
+    @State var rdPerrdEmo : Bool = true;
+    
     
     var body : some View {
         
@@ -63,8 +72,8 @@ struct Home: View {
                                 .foregroundColor(.white)
                                 .padding()
                             
-                            TextField("Input UserName", text: $p1Name)
-                                .frame(width : 280, height: 48)
+                            TextField("Input UserName", text: $playersData.firstPlayer.nama)
+                                .frame(width : 280, height: 28)
                                             .padding(EdgeInsets(top: 0, leading: 6, bottom: 0, trailing: 6))
                                             .background(.white)
                                             .cornerRadius(30)
@@ -74,17 +83,34 @@ struct Home: View {
                             
                             HStack {
                                 Button("😎", action: {
-                                    
-                                }).font(.system(size : 40))
+                                    if !stPerstEmo {
+                                        stPerstEmo.toggle()
+                                    }
+                                    stPerndEmo = false
+                                    stPerrdEmo = false
+                                }).font(.system(size : 30))
                                     .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10))
+                                    .opacity((stPerstEmo) ? 1 : 0.5)
+                                
                                 Button("😕", action: {
-                                    
-                                }).font(.system(size : 40))
+                                    if !stPerndEmo {
+                                        stPerndEmo.toggle()
+                                    }
+                                    stPerstEmo = false;
+                                    stPerrdEmo = false
+                                }).font(.system(size : 30))
                                     .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10))
+                                    .opacity((stPerndEmo) ? 1 : 0.5)
+                                
                                 Button("🤯", action: {
-                                    
-                                }).font(.system(size : 40))
+                                    if !stPerrdEmo {
+                                        stPerrdEmo.toggle()
+                                    }
+                                    stPerstEmo = false
+                                    stPerndEmo = false
+                                }).font(.system(size : 30))
                                     .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10))
+                                    .opacity((stPerrdEmo) ? 1 : 0.5)
                                     
                                 
                                 
@@ -99,8 +125,8 @@ struct Home: View {
                             
                             
                             
-                            TextField("Input UserName", text: $p2Name)
-                                .frame(width: 280, height: 48)
+                            TextField("Input UserName", text: $playersData.secondPlayer.nama)
+                                .frame(width: 280, height: 28)
                                             .padding(EdgeInsets(top: 0, leading: 6, bottom: 0, trailing: 6))
                                             .background(.white)
                                             .cornerRadius(30)
@@ -109,17 +135,64 @@ struct Home: View {
                                             
                             HStack {
                                 Button("😎", action: {
-                                    
-                                }).font(.system(size : 40))
+                                    ndPerstEmo = true
+                                    ndPerndEmo = false
+                                    ndPerrdEmo = false
+                                }).font(.system(size : 30))
                                     .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10))
+                                    .opacity(ndPerstEmo ? 1 : 0.5)
+                               
                                 Button("😕", action: {
-                                    
-                                }).font(.system(size : 40))
+                                    ndPerstEmo = false
+                                    ndPerndEmo = true
+                                    ndPerrdEmo = false
+                                }).font(.system(size : 30))
                                     .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10))
+                                    .opacity(ndPerndEmo ? 1 : 0.5)
+                               
                                 Button("🤯", action: {
-                                    
-                                }).font(.system(size : 40))
+                                    ndPerstEmo = false
+                                    ndPerndEmo = false
+                                    ndPerrdEmo = true
+                                }).font(.system(size : 30))
                                     .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10))
+                                    .opacity(ndPerrdEmo ? 1 : 0.5)
+                                
+                                
+                            }
+                            
+                            TextField("Input UserName", text: $playersData.thirdPlayer.nama)
+                                .frame(width: 280, height: 28)
+                                            .padding(EdgeInsets(top: 0, leading: 6, bottom: 0, trailing: 6))
+                                            .background(.white)
+                                            .cornerRadius(30)
+                                            .padding(EdgeInsets(top: -10, leading: 16, bottom: 0, trailing: 16))
+                                            .autocorrectionDisabled(true)
+                                            
+                            HStack {
+                                Button("😎", action: {
+                                    rdPerstEmo = true
+                                    rdPerndEmo = false
+                                    rdPerrdEmo = false
+                                }).font(.system(size : 30))
+                                    .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10))
+                                    .opacity(rdPerstEmo ? 1 : 0.5)
+                                
+                                Button("😕", action: {
+                                    rdPerstEmo = false
+                                    rdPerndEmo = true
+                                    rdPerrdEmo = false
+                                }).font(.system(size : 30))
+                                    .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10))
+                                    .opacity(rdPerndEmo ? 1 : 0.5)
+                                
+                                Button("🤯", action: {
+                                    rdPerstEmo = false
+                                    rdPerndEmo = false
+                                    rdPerrdEmo = true
+                                }).font(.system(size : 30))
+                                    .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10))
+                                    .opacity(rdPerrdEmo ? 1 : 0.5)
                                 
                                 
                             }.padding(.bottom, 35)
@@ -147,7 +220,7 @@ struct Home: View {
                     
                     
             }
-        }
+        }.environmentObject(playersData)
     }
 }
     
