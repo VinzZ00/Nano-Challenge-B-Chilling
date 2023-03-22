@@ -27,16 +27,15 @@ struct SplashScreen: View {
                             self.opacity = 1.0
                     }
                 }
-            }.onAppear{
-                DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
-                    withAnimation{
+            }
+            .onAppear{
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                    withAnimation(.easeInOut(duration: 2)){
                         self.isActive = true;
                     }
                 }
             }
         }
-        
-        
     }
 }
 

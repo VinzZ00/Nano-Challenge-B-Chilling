@@ -30,20 +30,10 @@ struct Home: View {
         
         NavigationView {
             VStack{
-                Image("HomeLogo")
-                    .padding(EdgeInsets(top: 40, leading: 0, bottom: 40, trailing: 0))
+                Image("HomeLogo2")
+                    .padding(.bottom, -20)
+                    .padding(.top, -20)
                 VStack {
-                    Button(action: {
-                        degress += 180
-                    }){
-                        Image("PlaceHolderArrow")
-                            .rotationEffect(.degrees(degress))
-                            
-                    }.frame(width: 300, height: 50)
-//                        .background(.black)
-                        .offset(y : 10)
-                        
-                        
                     
                     ZStack {
                         VStack{
@@ -52,19 +42,12 @@ struct Home: View {
                             }
                             Spacer();
                         }
-                        .background(.cyan)
-    //                    .border(.cyan, width: 20) //Cuma buat debugging
+                        .background(Color(red: 20/225, green: 202/225, blue: 225/225))
                             .cornerRadius(40)
                             .ignoresSafeArea(.all)
-                        
+                            .padding(.top, -24)
                         
                         VStack{
-//                            Button(action: {
-//
-//                            }) {
-////                                Image("Holder<logo>")
-//                                Text("Holder").foregroundColor(.black)
-//                            }
                             Text("Please list your chill\nfriends below,")
                                 .font(.system(size: 24))
                                 .multilineTextAlignment(.center)
@@ -72,7 +55,7 @@ struct Home: View {
                                 .foregroundColor(.white)
                                 .padding()
                             
-                            TextField("Input UserName", text: $playersData.firstPlayer.nama)
+                            TextField("Your Name", text: $playersData.firstPlayer.nama)
                                 .frame(width : 280, height: 28)
                                             .padding(EdgeInsets(top: 0, leading: 6, bottom: 0, trailing: 6))
                                             .background(.white)
@@ -88,6 +71,7 @@ struct Home: View {
                                     }
                                     stPerndEmo = false
                                     stPerrdEmo = false
+                                    playersData.firstPlayer.emotion = .chill
                                 }).font(.system(size : 30))
                                     .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10))
                                     .opacity((stPerstEmo) ? 1 : 0.5)
@@ -98,6 +82,7 @@ struct Home: View {
                                     }
                                     stPerstEmo = false;
                                     stPerrdEmo = false
+                                    playersData.firstPlayer.emotion = .blue
                                 }).font(.system(size : 30))
                                     .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10))
                                     .opacity((stPerndEmo) ? 1 : 0.5)
@@ -108,6 +93,7 @@ struct Home: View {
                                     }
                                     stPerstEmo = false
                                     stPerndEmo = false
+                                    playersData.firstPlayer.emotion = .stress
                                 }).font(.system(size : 30))
                                     .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10))
                                     .opacity((stPerrdEmo) ? 1 : 0.5)
@@ -125,7 +111,7 @@ struct Home: View {
                             
                             
                             
-                            TextField("Input UserName", text: $playersData.secondPlayer.nama)
+                            TextField("Your Friend's Name", text: $playersData.secondPlayer.nama)
                                 .frame(width: 280, height: 28)
                                             .padding(EdgeInsets(top: 0, leading: 6, bottom: 0, trailing: 6))
                                             .background(.white)
@@ -138,6 +124,8 @@ struct Home: View {
                                     ndPerstEmo = true
                                     ndPerndEmo = false
                                     ndPerrdEmo = false
+                                    
+                                    playersData.secondPlayer.emotion = .chill
                                 }).font(.system(size : 30))
                                     .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10))
                                     .opacity(ndPerstEmo ? 1 : 0.5)
@@ -146,6 +134,8 @@ struct Home: View {
                                     ndPerstEmo = false
                                     ndPerndEmo = true
                                     ndPerrdEmo = false
+                                    
+                                    playersData.secondPlayer.emotion = .blue
                                 }).font(.system(size : 30))
                                     .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10))
                                     .opacity(ndPerndEmo ? 1 : 0.5)
@@ -154,6 +144,8 @@ struct Home: View {
                                     ndPerstEmo = false
                                     ndPerndEmo = false
                                     ndPerrdEmo = true
+                                    
+                                    playersData.secondPlayer.emotion = .stress
                                 }).font(.system(size : 30))
                                     .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10))
                                     .opacity(ndPerrdEmo ? 1 : 0.5)
@@ -161,7 +153,7 @@ struct Home: View {
                                 
                             }
                             
-                            TextField("Input UserName", text: $playersData.thirdPlayer.nama)
+                            TextField("Your Friend's Name", text: $playersData.thirdPlayer.nama)
                                 .frame(width: 280, height: 28)
                                             .padding(EdgeInsets(top: 0, leading: 6, bottom: 0, trailing: 6))
                                             .background(.white)
@@ -174,6 +166,8 @@ struct Home: View {
                                     rdPerstEmo = true
                                     rdPerndEmo = false
                                     rdPerrdEmo = false
+                                    
+                                    playersData.thirdPlayer.emotion = .chill
                                 }).font(.system(size : 30))
                                     .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10))
                                     .opacity(rdPerstEmo ? 1 : 0.5)
@@ -182,7 +176,8 @@ struct Home: View {
                                     rdPerstEmo = false
                                     rdPerndEmo = true
                                     rdPerrdEmo = false
-                                }).font(.system(size : 30))
+                                    
+                                    playersData.thirdPlayer.emotion = .blue                                }).font(.system(size : 30))
                                     .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10))
                                     .opacity(rdPerndEmo ? 1 : 0.5)
                                 
@@ -190,6 +185,8 @@ struct Home: View {
                                     rdPerstEmo = false
                                     rdPerndEmo = false
                                     rdPerrdEmo = true
+                                    
+                                    playersData.thirdPlayer.emotion = .stress
                                 }).font(.system(size : 30))
                                     .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10))
                                     .opacity(rdPerrdEmo ? 1 : 0.5)
@@ -198,7 +195,8 @@ struct Home: View {
                             }.padding(.bottom, 35)
 
                             Button(action: {
-                                
+                                playersData.getDominatingSpot();
+                                playersData.getFinalSpot();
                             }){
                                 Text("Explore!").font(.system(size: 24)).bold()
                             }.frame(width: 151, height: 43)
@@ -221,6 +219,7 @@ struct Home: View {
                     
             }
         }.environmentObject(playersData)
+            .transition(.move(edge: .bottom))
     }
 }
     
