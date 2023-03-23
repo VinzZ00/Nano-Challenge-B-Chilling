@@ -8,23 +8,25 @@
 
 /* Begin PBXBuildFile section */
 		AC56D07A29CB2E2A00650884 /* SharedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC56D07929CB2E2A00650884 /* SharedData.swift */; };
+		ACA23A5629CC315C00EB5E5C /* ExploreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA23A5529CC315C00EB5E5C /* ExploreView.swift */; };
+		ACA23A5829CC318900EB5E5C /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA23A5729CC318900EB5E5C /* LocationManager.swift */; };
 		ACFFD99729C8AF46002B2E8B /* Nano1_BChillingApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACFFD99629C8AF46002B2E8B /* Nano1_BChillingApp.swift */; };
 		ACFFD99929C8AF46002B2E8B /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACFFD99829C8AF46002B2E8B /* Home.swift */; };
 		ACFFD99B29C8AF47002B2E8B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ACFFD99A29C8AF47002B2E8B /* Assets.xcassets */; };
 		ACFFD99E29C8AF47002B2E8B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ACFFD99D29C8AF47002B2E8B /* Preview Assets.xcassets */; };
 		ACFFD9A729C8D50C002B2E8B /* SplashScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACFFD9A629C8D50C002B2E8B /* SplashScreen.swift */; };
-		ACFFD9A929C9878A002B2E8B /* TestEnvObj.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACFFD9A829C9878A002B2E8B /* TestEnvObj.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		AC56D07929CB2E2A00650884 /* SharedData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedData.swift; sourceTree = "<group>"; };
+		ACA23A5529CC315C00EB5E5C /* ExploreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreView.swift; sourceTree = "<group>"; };
+		ACA23A5729CC318900EB5E5C /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		ACFFD99329C8AF46002B2E8B /* Nano1-BChilling.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Nano1-BChilling.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ACFFD99629C8AF46002B2E8B /* Nano1_BChillingApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nano1_BChillingApp.swift; sourceTree = "<group>"; };
 		ACFFD99829C8AF46002B2E8B /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 		ACFFD99A29C8AF47002B2E8B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ACFFD99D29C8AF47002B2E8B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		ACFFD9A629C8D50C002B2E8B /* SplashScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreen.swift; sourceTree = "<group>"; };
-		ACFFD9A829C9878A002B2E8B /* TestEnvObj.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestEnvObj.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,13 +59,14 @@
 		ACFFD99529C8AF46002B2E8B /* Nano1-BChilling */ = {
 			isa = PBXGroup;
 			children = (
+				AC56D07929CB2E2A00650884 /* SharedData.swift */,
+				ACA23A5729CC318900EB5E5C /* LocationManager.swift */,
 				ACFFD9A629C8D50C002B2E8B /* SplashScreen.swift */,
 				ACFFD99629C8AF46002B2E8B /* Nano1_BChillingApp.swift */,
-				AC56D07929CB2E2A00650884 /* SharedData.swift */,
 				ACFFD99829C8AF46002B2E8B /* Home.swift */,
+				ACA23A5529CC315C00EB5E5C /* ExploreView.swift */,
 				ACFFD99A29C8AF47002B2E8B /* Assets.xcassets */,
 				ACFFD99C29C8AF47002B2E8B /* Preview Content */,
-				ACFFD9A829C9878A002B2E8B /* TestEnvObj.swift */,
 			);
 			path = "Nano1-BChilling";
 			sourceTree = "<group>";
@@ -148,9 +151,10 @@
 			files = (
 				ACFFD99929C8AF46002B2E8B /* Home.swift in Sources */,
 				ACFFD99729C8AF46002B2E8B /* Nano1_BChillingApp.swift in Sources */,
+				ACA23A5829CC318900EB5E5C /* LocationManager.swift in Sources */,
 				ACFFD9A729C8D50C002B2E8B /* SplashScreen.swift in Sources */,
 				AC56D07A29CB2E2A00650884 /* SharedData.swift in Sources */,
-				ACFFD9A929C9878A002B2E8B /* TestEnvObj.swift in Sources */,
+				ACA23A5629CC315C00EB5E5C /* ExploreView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
