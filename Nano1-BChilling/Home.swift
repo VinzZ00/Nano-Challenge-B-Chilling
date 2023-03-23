@@ -25,6 +25,8 @@ struct Home: View {
     @State var rdPerndEmo : Bool = true;
     @State var rdPerrdEmo : Bool = true;
     
+    @State var exploreView : Bool = false;
+    
     
     var body : some View {
         
@@ -194,15 +196,26 @@ struct Home: View {
                                 
                             }.padding(.bottom, 35)
 
-                            Button(action: {
-                                playersData.getDominatingSpot();
-                                playersData.getFinalSpot();
-                            }){
-                                Text("Explore!").font(.system(size: 24)).bold()
-                            }.frame(width: 151, height: 43)
+//                            Button(action: {
+//                                playersData.getDominatingSpot();
+//                                playersData.getFinalSpot();
+//                                exploreView = true;
+//                                NavigationLink (destination: ExploreView()
+//                                    .navigationBarTitle("")
+//                                    .navigationBarHidden(true), isActive: $exploreView)
+//                            })
+                            NavigationLink(destination: ExploreView()){
+                                Text("Explore!").font(.system(size: 24)).bold()}
+                            .simultaneousGesture(TapGesture().onEnded{
+                                playersData.getDominatingSpot()
+                                
+                                playersData.getFinalSpot()
+                            })
+                            .frame(width: 151, height: 43)
                                 .background(.white)
                                 .foregroundColor(.cyan)
                                 .cornerRadius(22)
+                                
                                             
                                 
                             
@@ -210,6 +223,7 @@ struct Home: View {
                             
                             Spacer()
                         }.padding(.top, 35)
+                            
                     }
                 }
 //                .border(.black) //Just for debugging
@@ -220,6 +234,7 @@ struct Home: View {
             }
         }.environmentObject(playersData)
             .transition(.move(edge: .bottom))
+            
     }
 }
     

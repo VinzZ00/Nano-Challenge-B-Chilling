@@ -79,18 +79,18 @@ class PlayersData : ObservableObject {
     func getDominatingSpot() {
         var (blue, happy, stress) = (0,0,0)
         
-        var players : [player] = [firstPlayer, secondPlayer, thirdPlayer];
+        let players : [player] = [firstPlayer, secondPlayer, thirdPlayer];
         
         players.map({ x in
             
-            //            switch x.emotion {
-            //                case .chill :
-            //                    happy += 1
-            //                case .blue :
-            //                    blue += 1
-            //                case .stress :
-            //                    stress += 1
-            //            }
+//                        switch x.emotion {
+//                            case .chill :
+//                                happy += 1
+//                            case .blue :
+//                                blue += 1
+//                            case .stress :
+//                                stress += 1
+//                        }
             if x.emotion == .chill {
                 happy += 1;
             } else if x.emotion == .blue {

@@ -14,7 +14,7 @@ struct SplashScreen: View {
     @State var opacity = 0.2;
     var body: some View {
         
-        if isActive {
+            if isActive {
             Home();
         } else {
             VStack {
