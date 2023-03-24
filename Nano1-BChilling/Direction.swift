@@ -86,12 +86,29 @@ struct DirectionView: View {
                     .font(.largeTitle)
                     .bold()
                     .padding()
+                    .foregroundColor(.white)
                 
                 Divider().background(Color(UIColor.systemBlue))
                 
                 List(0..<self.directions.count, id: \.self) { i in
                     Text(self.directions[i]).padding()
+                }.foregroundColor(Color(red: 20 / 255, green: 202 / 255, blue: 225 / 255))
+                
+                Button(action: {
+                    self.showDirections.toggle()
+                }){
+                        Text("End Route")
+                            .frame(width: 179, height: 40)
+                            .background(Color(red: 255/255, green: 87/255, blue: 87/255))
+                            .cornerRadius(13.5)
+                            .bold()
+                            .foregroundColor(.white)
                 }
+                NavigationLink(
+                    destination: Home().onTapGesture {
+                        
+                    }
+                )
             }
         })
     }
