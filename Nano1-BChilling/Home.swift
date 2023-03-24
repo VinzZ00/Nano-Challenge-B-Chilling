@@ -206,6 +206,7 @@ struct Home: View {
 //                            })
                             NavigationLink(
                                 destination: DirectionView()
+                                    .navigationBarHidden(true)
                             ){
                                 Text("Explore!").font(.system(size: 24)).bold()}
                             .simultaneousGesture(TapGesture().onEnded{
