@@ -22,18 +22,64 @@ struct DirectionView: View {
     
     var body: some View {
         VStack {
-            Text(String(playerData.finalSpot.0))
-            Text(String(playerData.finalSpot.1.coordinate.longitude))
-            Text(String(playerData.finalSpot.1.coordinate.latitude))
+//            Text(String(playerData.finalSpot.0))
+//            Text(String(playerData.finalSpot.1.coordinate.longitude))
+//            Text(String(playerData.finalSpot.1.coordinate.latitude))
             MapView(p2longitude: playerData.finalSpot.1.coordinate.longitude, p2latitude: playerData.finalSpot.1.coordinate.latitude, directions: $directions)
             
-            Button(action: {
-                self.showDirections.toggle()
-            }, label: {
-                Text("Show directions")
-            })
-            .disabled(directions.isEmpty)
-            .padding()
+            ZStack {
+                VStack {
+                    HStack{
+                        Spacer()
+                        Image("HomeLogo2")
+//                            .scaledToFit()
+//                            .padding()
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .frame(width: 120, height: 120)
+                            .cornerRadius(8)
+//                            .clipped()
+                            .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 10))
+                        VStack(alignment: .leading){
+                            Text("\(playerData.finalSpot.0)")
+                                .font(.title)
+                                .foregroundColor(.white)
+                                .bold()
+                            Button(action: {
+                                self.showDirections.toggle()
+                            }){
+                                    Text("Start")
+                                        .frame(width: 179, height: 40)
+                                        .background(Color(red: 53/255, green: 229/255, blue: 130/255))
+                                        .cornerRadius(13.5)
+                                        .bold()
+                                        .foregroundColor(.white)
+                            }
+                            NavigationLink(
+                                destination: DirectionView().onTapGesture {
+                                    
+                                }
+                            ){
+                                Text("Suggest Other Place")
+                                    .font(.system(size: 15))
+                                    .padding()
+                                    .frame(width: 179, height: 40)
+                                    .background(.white).foregroundColor(Color(red: 20/255, green: 202/255, blue: 225/255))
+                                    .cornerRadius(13.5)
+                                    .bold()
+                            }
+                        }
+                        Spacer()
+                    }
+                    .disabled(directions.isEmpty)
+    //            .padding()
+                }.padding(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 20))
+                .frame(height:250)
+                    .background(Color(red: 20 / 255, green: 202 / 255, blue: 225 / 255))
+    //            .frame(height:250)
+    //                .background(Color(red: 20 / 255, green: 202 / 255, blue: 225 / 255))
+                .padding(.top, 0)
+            }
         }.sheet(isPresented: $showDirections, content: {
             VStack(spacing: 0) {
                 Text("Directions")
