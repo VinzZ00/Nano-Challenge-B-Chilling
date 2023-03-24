@@ -11,7 +11,8 @@ import SwiftUI
 struct Nano1_BChillingApp: App {
     var body: some Scene {
         WindowGroup {
-            SplashScreen()
+//            SplashScreen()
+            Home();
         }
     }
 }

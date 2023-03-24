@@ -233,7 +233,7 @@ struct Home: View {
                     
             }
         }.environmentObject(playersData)
-            .transition(.move(edge: .bottom))
+            .animation(.easeInOut(duration: 1))
             
     }
 }
