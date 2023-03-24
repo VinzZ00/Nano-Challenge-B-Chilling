@@ -204,12 +204,15 @@ struct Home: View {
 //                                    .navigationBarTitle("")
 //                                    .navigationBarHidden(true), isActive: $exploreView)
 //                            })
-                            NavigationLink(destination: ExploreView()){
+                            NavigationLink(
+                                destination: DirectionView()
+                            ){
                                 Text("Explore!").font(.system(size: 24)).bold()}
                             .simultaneousGesture(TapGesture().onEnded{
                                 playersData.getDominatingSpot()
                                 
                                 playersData.getFinalSpot()
+
                             })
                             .frame(width: 151, height: 43)
                                 .background(.white)
@@ -233,7 +236,6 @@ struct Home: View {
                     
             }
         }.environmentObject(playersData)
-            .animation(.easeInOut(duration: 1))
             
     }
 }

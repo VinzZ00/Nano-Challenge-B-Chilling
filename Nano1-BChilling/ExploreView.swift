@@ -30,7 +30,7 @@ struct ExploreView: View {
                         }){
                             Text("Drawer") // Sementara
                             //Custom button yang arrow ke atas
-                            var (stringLoc, _) = playersData.finalSpot!
+                            var (stringLoc, _) = playersData.finalSpot
                             Text("\(stringLoc)")
                         }
                         Spacer()

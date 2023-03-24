@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		AC56D07A29CB2E2A00650884 /* SharedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC56D07929CB2E2A00650884 /* SharedData.swift */; };
+		AC96B46A29CD80F000EB7013 /* Direction.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC96B46929CD80F000EB7013 /* Direction.swift */; };
 		ACA23A5629CC315C00EB5E5C /* ExploreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA23A5529CC315C00EB5E5C /* ExploreView.swift */; };
 		ACA23A5829CC318900EB5E5C /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA23A5729CC318900EB5E5C /* LocationManager.swift */; };
 		ACFFD99729C8AF46002B2E8B /* Nano1_BChillingApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACFFD99629C8AF46002B2E8B /* Nano1_BChillingApp.swift */; };
@@ -19,6 +20,7 @@
 
 /* Begin PBXFileReference section */
 		AC56D07929CB2E2A00650884 /* SharedData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedData.swift; sourceTree = "<group>"; };
+		AC96B46929CD80F000EB7013 /* Direction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Direction.swift; sourceTree = "<group>"; };
 		ACA23A5529CC315C00EB5E5C /* ExploreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreView.swift; sourceTree = "<group>"; };
 		ACA23A5729CC318900EB5E5C /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		ACFFD99329C8AF46002B2E8B /* Nano1-BChilling.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Nano1-BChilling.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -59,6 +61,7 @@
 		ACFFD99529C8AF46002B2E8B /* Nano1-BChilling */ = {
 			isa = PBXGroup;
 			children = (
+				AC96B46929CD80F000EB7013 /* Direction.swift */,
 				AC56D07929CB2E2A00650884 /* SharedData.swift */,
 				ACA23A5729CC318900EB5E5C /* LocationManager.swift */,
 				ACFFD9A629C8D50C002B2E8B /* SplashScreen.swift */,
@@ -149,6 +152,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC96B46A29CD80F000EB7013 /* Direction.swift in Sources */,
 				ACFFD99929C8AF46002B2E8B /* Home.swift in Sources */,
 				ACFFD99729C8AF46002B2E8B /* Nano1_BChillingApp.swift in Sources */,
 				ACA23A5829CC318900EB5E5C /* LocationManager.swift in Sources */,
