@@ -12,6 +12,11 @@ struct Home: View {
     @StateObject var playersData = PlayersData();
     
     @State var degress : Double = 0
+    @State var valid : Bool = false;
+    
+    @State var p1Choose : Bool = false;
+    @State var p2Choose : Bool = false;
+    @State var p3Choose : Bool = false;
     
     @State var stPerstEmo : Bool = true;
     @State var stPerndEmo : Bool = true;
@@ -74,6 +79,12 @@ struct Home: View {
                                     stPerndEmo = false
                                     stPerrdEmo = false
                                     playersData.firstPlayer.emotion = .chill
+                                    
+                                    p1Choose = true
+                                    
+                                    if p2Choose == true || p3Choose == true {
+                                        valid = true
+                                    }
                                 }).font(.system(size : 30))
                                     .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10))
                                     .opacity((stPerstEmo) ? 1 : 0.5)
@@ -85,6 +96,13 @@ struct Home: View {
                                     stPerstEmo = false;
                                     stPerrdEmo = false
                                     playersData.firstPlayer.emotion = .blue
+                                    
+                                    p1Choose = true
+                                    
+                                    if p2Choose == true || p3Choose == true {
+                                        valid = true
+                                    }
+                                    
                                 }).font(.system(size : 30))
                                     .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10))
                                     .opacity((stPerndEmo) ? 1 : 0.5)
@@ -96,6 +114,12 @@ struct Home: View {
                                     stPerstEmo = false
                                     stPerndEmo = false
                                     playersData.firstPlayer.emotion = .stress
+                                    
+                                    p1Choose = true
+                                    
+                                    if p2Choose == true || p3Choose == true {
+                                        valid = true
+                                    }
                                 }).font(.system(size : 30))
                                     .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10))
                                     .opacity((stPerrdEmo) ? 1 : 0.5)
@@ -128,6 +152,15 @@ struct Home: View {
                                     ndPerrdEmo = false
                                     
                                     playersData.secondPlayer.emotion = .chill
+                                    
+                                    p2Choose = true
+                                    
+                                    if p1Choose == true || p3Choose == true {
+                                        valid = true
+                                    }
+                                    
+                                    
+                                    
                                 }).font(.system(size : 30))
                                     .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10))
                                     .opacity(ndPerstEmo ? 1 : 0.5)
@@ -138,6 +171,13 @@ struct Home: View {
                                     ndPerrdEmo = false
                                     
                                     playersData.secondPlayer.emotion = .blue
+                                    
+                                    p2Choose = true
+                                    
+                                    if p1Choose == true || p3Choose == true {
+                                        valid = true
+                                    }
+                                    
                                 }).font(.system(size : 30))
                                     .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10))
                                     .opacity(ndPerndEmo ? 1 : 0.5)
@@ -148,6 +188,13 @@ struct Home: View {
                                     ndPerrdEmo = true
                                     
                                     playersData.secondPlayer.emotion = .stress
+                                    
+                                    p2Choose = true
+                                    
+                                    if p1Choose == true || p3Choose == true {
+                                        valid = true
+                                    }
+                                    
                                 }).font(.system(size : 30))
                                     .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10))
                                     .opacity(ndPerrdEmo ? 1 : 0.5)
@@ -170,6 +217,13 @@ struct Home: View {
                                     rdPerrdEmo = false
                                     
                                     playersData.thirdPlayer.emotion = .chill
+                                    
+                                    p3Choose = true
+                                    
+                                    if p1Choose == true || p2Choose == true {
+                                        valid = true
+                                    }
+                                    
                                 }).font(.system(size : 30))
                                     .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10))
                                     .opacity(rdPerstEmo ? 1 : 0.5)
@@ -179,7 +233,15 @@ struct Home: View {
                                     rdPerndEmo = true
                                     rdPerrdEmo = false
                                     
-                                    playersData.thirdPlayer.emotion = .blue                                }).font(.system(size : 30))
+                                    playersData.thirdPlayer.emotion = .blue
+                                    
+                                    p3Choose = true
+                                    
+                                    if p1Choose == true || p2Choose == true {
+                                        valid = true
+                                    }
+                                    
+                                }).font(.system(size : 30))
                                     .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10))
                                     .opacity(rdPerndEmo ? 1 : 0.5)
                                 
@@ -189,9 +251,17 @@ struct Home: View {
                                     rdPerrdEmo = true
                                     
                                     playersData.thirdPlayer.emotion = .stress
+                                    
+                                    p3Choose = true
+                                    
+                                    if p1Choose == true || p2Choose == true {
+                                        valid = true
+                                    }
+                                    
                                 }).font(.system(size : 30))
                                     .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10))
                                     .opacity(rdPerrdEmo ? 1 : 0.5)
+                                    
                                 
                                 
                             }.padding(.bottom, 35)
@@ -212,14 +282,15 @@ struct Home: View {
                             .simultaneousGesture(TapGesture().onEnded{
                                 playersData.getDominatingSpot()
                                 
-                                playersData.getFinalSpot()
+                                playersData.getFinalSpot();
 
                             })
                             .frame(width: 151, height: 43)
                                 .background(.white)
                                 .foregroundColor(.cyan)
                                 .cornerRadius(22)
-                                
+                                .disabled(!valid)
+                                .opacity(valid ? 1 : 0.5)
                                             
                                 
                             
@@ -235,8 +306,9 @@ struct Home: View {
                 
                     
                     
-            }
+            }.background(.white)
         }.environmentObject(playersData)
+            .background(.white)
             
     }
 }

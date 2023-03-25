@@ -16,6 +16,20 @@ import UIKit
 
 struct DirectionView: View {
     
+    
+    var images : [String : Image] =
+    [
+        "Kumolo BSD" : Image("KUMULO BSD"),
+        "Q’Billiard" : Image("Q BILLIARD"),
+        "Techpolitan Board Game" : Image("TECHPOLITAN"),
+        "Food Court The Breeze" : Image("FOOD COURT BREEZE"),
+        "Lake View Breeze" : Image("LAKE VIEW BREEZE"),
+        "Walking Track Breeze" : Image("WALKING TRACK BREEZE"),
+        "Sinar Djaya" : Image("SINAR DJAYA"),
+        "Spincity" : Image("SPINCITY"),
+        "Gold Gym" : Image("GOLD GYM")
+    ]
+    
     @EnvironmentObject var playerData : PlayersData
     @State private var directions: [String] = []
     @State private var showDirections = false
@@ -31,15 +45,17 @@ struct DirectionView: View {
                 VStack {
                     HStack{
                         Spacer()
-                        Image("HomeLogo2")
+//                        Image("Q BILLIARD")
 //                            .scaledToFit()
 //                            .padding()
+                        
+                        images[String(playerData.finalSpot.0)]!
                             .resizable()
                             .aspectRatio(contentMode: .fill)
                             .frame(width: 120, height: 120)
                             .cornerRadius(8)
 //                            .clipped()
-                            .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 10))
+                            .padding(EdgeInsets(top: 0, leading: 0, bottom: -10, trailing: 10))
                         VStack(alignment: .leading){
                             Text("\(playerData.finalSpot.0)")
                                 .font(.title)
@@ -55,11 +71,24 @@ struct DirectionView: View {
                                         .bold()
                                         .foregroundColor(.white)
                             }
-                            NavigationLink(
-                                destination: DirectionView().onTapGesture {
-                                    
-                                }
-                            ){
+//                            NavigationLink(
+//                                destination: DirectionView()
+//                                    .navigationBarHidden(true)
+//                            ){
+//
+//                            }.simultaneousGesture(TapGesture().onEnded{
+//                                playerData.finalSpot = (
+//                                    Array(playerData.spotAvailable.keys)[idx], Array(playerData.spotAvailable.values)[idx]
+//                                )
+//
+//                                if idx < playerData.spotAvailable.count {
+//                                    idx += 1
+//                                } else if idx > playerData.spotAvailable.count {
+//                                    idx = 0;
+//                                }
+//                            })
+                            
+                            NavigationLink(destination: DirectionView()) {
                                 Text("Suggest Other Place")
                                     .font(.system(size: 15))
                                     .padding()
@@ -67,7 +96,29 @@ struct DirectionView: View {
                                     .background(.white).foregroundColor(Color(red: 20/255, green: 202/255, blue: 225/255))
                                     .cornerRadius(13.5)
                                     .bold()
+                            }.simultaneousGesture(TapGesture().onEnded() {
+                                playerData.finalSpot = (
+                                    Array(playerData.spotAvailable.keys)[playerData.idx],
+                                    Array(playerData.spotAvailable.values)[playerData.idx]
+                                );
+                                
+                                if playerData.idx < playerData.spotAvailable.count-1 {
+                                    playerData.idx += 1
+                                } else {
+                                    playerData.idx = 0;
+                                }
+                            })
+                            
+                            NavigationLink(destination: Home()
+                                .navigationBarHidden(true)){
+                                Text("Back To Home?")
+                                        .frame(width: 179, height: 40)
+                                        .background(Color(red: 255/255, green: 87/255, blue: 87/255))
+                                        .cornerRadius(13.5)
+                                        .bold()
+                                        .foregroundColor(.white)
                             }
+
                         }
                         Spacer()
                     }
@@ -81,34 +132,34 @@ struct DirectionView: View {
                 .padding(.top, 0)
             }
         }.sheet(isPresented: $showDirections, content: {
-            VStack(spacing: 0) {
-                Text("Directions")
-                    .font(.largeTitle)
-                    .bold()
-                    .padding()
-                    .foregroundColor(.white)
-                
-                Divider().background(Color(UIColor.systemBlue))
-                
-                List(0..<self.directions.count, id: \.self) { i in
-                    Text(self.directions[i]).padding()
-                }.foregroundColor(Color(red: 20 / 255, green: 202 / 255, blue: 225 / 255))
-                
-                Button(action: {
-                    self.showDirections.toggle()
-                }){
-                        Text("End Route")
-                            .frame(width: 179, height: 40)
-                            .background(Color(red: 255/255, green: 87/255, blue: 87/255))
-                            .cornerRadius(13.5)
-                            .bold()
-                            .foregroundColor(.white)
-                }
-                NavigationLink(
-                    destination: Home().onTapGesture {
-                        
+            NavigationView{
+                VStack(spacing: 0) {
+                    Text("Directions")
+                        .font(.largeTitle)
+                        .bold()
+                        .padding()
+                        .foregroundColor(.black)
+                    
+                    Divider().background(Color(UIColor.systemBlue))
+                    
+                    List(0..<self.directions.count, id: \.self) { i in
+                        Text(self.directions[i]).padding()
                     }
-                )
+                    .foregroundColor(Color(red: 20 / 255, green: 202 / 255, blue: 225 / 255))
+                        .cornerRadius(20)
+                        
+                    
+                    Button(action: {
+                        self.showDirections.toggle()
+                    }){
+                            Text("End Route")
+                                .frame(width: 179, height: 40)
+                                .background(Color(red: 255/255, green: 87/255, blue: 87/255))
+                                .cornerRadius(13.5)
+                                .bold()
+                                .foregroundColor(.white)
+                    }.padding()
+                                    }.background(Color(red: 20 / 255, green: 202 / 255, blue: 225 / 255))
             }
         })
     }

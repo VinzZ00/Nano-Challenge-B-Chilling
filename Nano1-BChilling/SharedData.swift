@@ -15,11 +15,12 @@ enum emotion {
     case bluenchill
     case stressnblue
     case stressnchill
+    case allcando
 }
 
 struct player {
     var nama : String = ""
-    var emotion : emotion = .chill
+    var emotion : emotion?
 }
 
 class PlayersData : ObservableObject {
@@ -42,7 +43,6 @@ class PlayersData : ObservableObject {
     [
         "Sinar Djaya" : CLLocation(latitude: -6.301985, longitude: 106.654779),
         "Spincity" : CLLocation(latitude: -6.302706, longitude: 106.655111),
-        "NXL esport center" : CLLocation(latitude: -6.302424, longitude: 106.655448),
         "Gold Gym" : CLLocation(latitude: -6.302001, longitude: 106.654678)
     ]
     
@@ -67,6 +67,14 @@ class PlayersData : ObservableObject {
         "Walking Track Breeze" : CLLocation(latitude: -6.301616, longitude: 106.651096)
     ]
     
+    var allcanDo : [String : CLLocation] =
+    [
+        "Kumolo BSD" : CLLocation(latitude: -6.300620, longitude: 106.654335),
+        "Food Court The Breeze" : CLLocation(latitude : -6.301582, longitude : 106.655139),
+        "Sinar Djaya" : CLLocation(latitude: -6.301985, longitude: 106.654779),
+    ]
+    
+    @Published var idx = 1;
     @Published var firstPlayer : player = player();
     @Published var secondPlayer : player = player();
     @Published var thirdPlayer : player = player()
@@ -106,12 +114,14 @@ class PlayersData : ObservableObject {
             self.dominatingEmotion = .chill
         } else if stress > 1 {
             self.dominatingEmotion = .stress
-        } else if blue < 1 {
+        } else if blue == 0 && stress != 0 && happy != 0 {
             self.dominatingEmotion = .stressnchill
-        } else if stress < 1 {
+        } else if stress == 0 && happy != 0 && blue != 0 {
             self.dominatingEmotion = .bluenchill
-        } else if happy < 1 {
+        } else if happy == 0 && stress != 0 && blue != 0 {
             self.dominatingEmotion = .stressnblue
+        } else {
+            self.dominatingEmotion = .allcando
         }
     }
     
@@ -130,6 +140,8 @@ class PlayersData : ObservableObject {
                 spotAvailable = bluenstress
             case .stressnchill :
                 spotAvailable = chillnStress
+            case .allcando :
+                spotAvailable = allcanDo
             }
         }
         
