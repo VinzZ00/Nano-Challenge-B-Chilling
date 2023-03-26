@@ -89,7 +89,8 @@ struct DirectionView: View {
     //                                }
     //                            })
                                 
-                                NavigationLink(destination: DirectionView()) {
+                                NavigationLink(destination: DirectionView()
+                                    .navigationBarHidden(true)) {
                                     Text("Suggest Other Place")
                                         .font(.system(size: 15))
                                         .padding()
