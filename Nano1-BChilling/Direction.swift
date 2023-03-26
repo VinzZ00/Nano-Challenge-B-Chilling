@@ -35,133 +35,136 @@ struct DirectionView: View {
     @State private var showDirections = false
     
     var body: some View {
-        VStack {
-//            Text(String(playerData.finalSpot.0))
-//            Text(String(playerData.finalSpot.1.coordinate.longitude))
-//            Text(String(playerData.finalSpot.1.coordinate.latitude))
-            MapView(p2longitude: playerData.finalSpot.1.coordinate.longitude, p2latitude: playerData.finalSpot.1.coordinate.latitude, directions: $directions)
-            
-            ZStack {
-                VStack {
-                    HStack{
-                        Spacer()
-//                        Image("Q BILLIARD")
-//                            .scaledToFit()
-//                            .padding()
-                        
-                        images[String(playerData.finalSpot.0)]!
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .frame(width: 120, height: 120)
-                            .cornerRadius(8)
-//                            .clipped()
-                            .padding(EdgeInsets(top: 0, leading: 0, bottom: -10, trailing: 10))
-                        VStack(alignment: .leading){
-                            Text("\(playerData.finalSpot.0)")
-                                .font(.title)
-                                .foregroundColor(.white)
-                                .bold()
-                            Button(action: {
-                                self.showDirections.toggle()
-                            }){
-                                    Text("Start")
+        NavigationView{
+            VStack {
+    //            Text(String(playerData.finalSpot.0))
+    //            Text(String(playerData.finalSpot.1.coordinate.longitude))
+    //            Text(String(playerData.finalSpot.1.coordinate.latitude))
+                MapView(p2longitude: playerData.finalSpot.1.coordinate.longitude, p2latitude: playerData.finalSpot.1.coordinate.latitude, directions: $directions)
+                
+                ZStack {
+                    VStack {
+                        HStack{
+                            Spacer()
+    //                        Image("Q BILLIARD")
+    //                            .scaledToFit()
+    //                            .padding()
+                            
+                            images[String(playerData.finalSpot.0)]!
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .frame(width: 120, height: 120)
+                                .cornerRadius(8)
+    //                            .clipped()
+                                .padding(EdgeInsets(top: 0, leading: 0, bottom: -10, trailing: 10))
+                            VStack(alignment: .leading){
+                                Text("\(playerData.finalSpot.0)")
+                                    .font(.title)
+                                    .foregroundColor(.white)
+                                    .bold()
+                                Button(action: {
+                                    self.showDirections.toggle()
+                                }){
+                                        Text("Start")
+                                            .frame(width: 179, height: 40)
+                                            .background(Color(red: 53/255, green: 229/255, blue: 130/255))
+                                            .cornerRadius(13.5)
+                                            .bold()
+                                            .foregroundColor(.white)
+                                }
+    //                            NavigationLink(
+    //                                destination: DirectionView()
+    //                                    .navigationBarHidden(true)
+    //                            ){
+    //
+    //                            }.simultaneousGesture(TapGesture().onEnded{
+    //                                playerData.finalSpot = (
+    //                                    Array(playerData.spotAvailable.keys)[idx], Array(playerData.spotAvailable.values)[idx]
+    //                                )
+    //
+    //                                if idx < playerData.spotAvailable.count {
+    //                                    idx += 1
+    //                                } else if idx > playerData.spotAvailable.count {
+    //                                    idx = 0;
+    //                                }
+    //                            })
+                                
+                                NavigationLink(destination: DirectionView()) {
+                                    Text("Suggest Other Place")
+                                        .font(.system(size: 15))
+                                        .padding()
                                         .frame(width: 179, height: 40)
-                                        .background(Color(red: 53/255, green: 229/255, blue: 130/255))
+                                        .background(.white).foregroundColor(Color(red: 20/255, green: 202/255, blue: 225/255))
                                         .cornerRadius(13.5)
                                         .bold()
-                                        .foregroundColor(.white)
+                                }.simultaneousGesture(TapGesture().onEnded() {
+                                    playerData.finalSpot = (
+                                        Array(playerData.spotAvailable.keys)[playerData.idx],
+                                        Array(playerData.spotAvailable.values)[playerData.idx]
+                                    );
+                                    
+                                    if playerData.idx < playerData.spotAvailable.count-1 {
+                                        playerData.idx += 1
+                                    } else {
+                                        playerData.idx = 0;
+                                    }
+                                })
+                                
+                                NavigationLink(destination: Home()
+                                    .navigationBarHidden(true)){
+                                    Text("Back To Home?")
+                                            .frame(width: 179, height: 40)
+                                            .background(Color(red: 255/255, green: 87/255, blue: 87/255))
+                                            .cornerRadius(13.5)
+                                            .bold()
+                                            .foregroundColor(.white)
+                                }
+
                             }
-//                            NavigationLink(
-//                                destination: DirectionView()
-//                                    .navigationBarHidden(true)
-//                            ){
-//
-//                            }.simultaneousGesture(TapGesture().onEnded{
-//                                playerData.finalSpot = (
-//                                    Array(playerData.spotAvailable.keys)[idx], Array(playerData.spotAvailable.values)[idx]
-//                                )
-//
-//                                if idx < playerData.spotAvailable.count {
-//                                    idx += 1
-//                                } else if idx > playerData.spotAvailable.count {
-//                                    idx = 0;
-//                                }
-//                            })
+                            Spacer()
+                        }
+                        .disabled(directions.isEmpty)
+        //            .padding()
+                    }.padding(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 20))
+                    .frame(height:250)
+                        .background(Color(red: 20 / 255, green: 202 / 255, blue: 225 / 255))
+        //            .frame(height:250)
+        //                .background(Color(red: 20 / 255, green: 202 / 255, blue: 225 / 255))
+                    .padding(.top, 0)
+                }
+            }.sheet(isPresented: $showDirections, content: {
+                NavigationView{
+                    VStack(spacing: 0) {
+                        Text("Directions")
+                            .font(.largeTitle)
+                            .bold()
+                            .padding()
+                            .foregroundColor(.black)
+                        
+                        Divider().background(Color(UIColor.systemBlue))
+                        
+                        List(0..<self.directions.count, id: \.self) { i in
+                            Text(self.directions[i]).padding()
+                        }
+                        .foregroundColor(Color(red: 20 / 255, green: 202 / 255, blue: 225 / 255))
+                            .cornerRadius(20)
                             
-                            NavigationLink(destination: DirectionView()) {
-                                Text("Suggest Other Place")
-                                    .font(.system(size: 15))
-                                    .padding()
+                        
+                        Button(action: {
+                            self.showDirections.toggle()
+                        }){
+                                Text("End Route")
                                     .frame(width: 179, height: 40)
-                                    .background(.white).foregroundColor(Color(red: 20/255, green: 202/255, blue: 225/255))
+                                    .background(Color(red: 255/255, green: 87/255, blue: 87/255))
                                     .cornerRadius(13.5)
                                     .bold()
-                            }.simultaneousGesture(TapGesture().onEnded() {
-                                playerData.finalSpot = (
-                                    Array(playerData.spotAvailable.keys)[playerData.idx],
-                                    Array(playerData.spotAvailable.values)[playerData.idx]
-                                );
-                                
-                                if playerData.idx < playerData.spotAvailable.count-1 {
-                                    playerData.idx += 1
-                                } else {
-                                    playerData.idx = 0;
-                                }
-                            })
-                            
-                            NavigationLink(destination: Home()
-                                .navigationBarHidden(true)){
-                                Text("Back To Home?")
-                                        .frame(width: 179, height: 40)
-                                        .background(Color(red: 255/255, green: 87/255, blue: 87/255))
-                                        .cornerRadius(13.5)
-                                        .bold()
-                                        .foregroundColor(.white)
-                            }
-
-                        }
-                        Spacer()
-                    }
-                    .disabled(directions.isEmpty)
-    //            .padding()
-                }.padding(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 20))
-                .frame(height:250)
-                    .background(Color(red: 20 / 255, green: 202 / 255, blue: 225 / 255))
-    //            .frame(height:250)
-    //                .background(Color(red: 20 / 255, green: 202 / 255, blue: 225 / 255))
-                .padding(.top, 0)
-            }
-        }.sheet(isPresented: $showDirections, content: {
-            NavigationView{
-                VStack(spacing: 0) {
-                    Text("Directions")
-                        .font(.largeTitle)
-                        .bold()
-                        .padding()
-                        .foregroundColor(.black)
-                    
-                    Divider().background(Color(UIColor.systemBlue))
-                    
-                    List(0..<self.directions.count, id: \.self) { i in
-                        Text(self.directions[i]).padding()
-                    }
-                    .foregroundColor(Color(red: 20 / 255, green: 202 / 255, blue: 225 / 255))
-                        .cornerRadius(20)
-                        
-                    
-                    Button(action: {
-                        self.showDirections.toggle()
-                    }){
-                            Text("End Route")
-                                .frame(width: 179, height: 40)
-                                .background(Color(red: 255/255, green: 87/255, blue: 87/255))
-                                .cornerRadius(13.5)
-                                .bold()
-                                .foregroundColor(.white)
-                    }.padding()
-                                    }.background(Color(red: 20 / 255, green: 202 / 255, blue: 225 / 255))
-            }
-        })
+                                    .foregroundColor(.white)
+                        }.padding()
+                                        }.background(Color(red: 20 / 255, green: 202 / 255, blue: 225 / 255))
+                }
+            })
+        
+        }
     }
 }
 
