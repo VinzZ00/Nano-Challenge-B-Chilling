@@ -64,12 +64,12 @@ struct Home: View {
                             
                             TextField("Your Name", text: $playersData.firstPlayer.nama)
                                 .frame(width : 280, height: 28)
-                                            .padding(EdgeInsets(top: 0, leading: 6, bottom: 0, trailing: 6))
-                                            .background(.white)
-                                            .cornerRadius(30)
-                                            .padding(.bottom, -10)
-                                            .padding()
-                                            .autocorrectionDisabled(true)
+                                            .frame(width: 280, height: 28)
+                                                        .padding(EdgeInsets(top: 0, leading: 6, bottom: 0, trailing: 6))
+                                                        .background(.white)
+                                                        .cornerRadius(30)
+                                                        .padding(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16))
+                                                        .autocorrectionDisabled(true)
                             
                             HStack {
                                 Button("😎", action: {
@@ -127,15 +127,6 @@ struct Home: View {
                                 
                                 
                             }
-    //
-    //                        Picker(selection: $avocadoStyle, label: Text("Avocado:")) {
-    //                            Text("Sliced").tag("Sliced")
-    //                            Text("Mashed").tag("mashed")
-    //                        }.pickerStyle(.inline)
-                            
-                            
-                            
-                            
                             
                             TextField("Your Friend's Name", text: $playersData.secondPlayer.nama)
                                 .frame(width: 280, height: 28)
@@ -265,15 +256,7 @@ struct Home: View {
                                 
                                 
                             }.padding(.bottom, 35)
-
-//                            Button(action: {
-//                                playersData.getDominatingSpot();
-//                                playersData.getFinalSpot();
-//                                exploreView = true;
-//                                NavigationLink (destination: ExploreView()
-//                                    .navigationBarTitle("")
-//                                    .navigationBarHidden(true), isActive: $exploreView)
-//                            })
+                            
                             NavigationLink(
                                 destination: DirectionView()
                                     .navigationBarHidden(true)
@@ -312,37 +295,6 @@ struct Home: View {
             
     }
 }
-    
-    
-//    var body: some View {
-//
-//        NavigationView {
-//            VStack{
-//
-//                VStack{
-//                    HStack {
-//                        Spacer()
-//                    }
-//                    Spacer()
-//                }.background(Color(uiColor: UIColor(red: 20.0, green: <#T##CGFloat#>, blue: <#T##CGFloat#>, alpha: <#T##CGFloat#>)))
-////                VStack (alignment: .center){
-////                    Text("Testing")
-////                }
-////                    .border(Color.black)
-////                    .frame(minHeight: .infinity)
-////
-//                //                .foregroundColor(Color(red: 20, green: 202, blue: 225))
-//                    .toolbar {
-//                        ToolbarItem(placement: .principal) {
-//                            Image("HomeLogo")
-//                            //                        .font(.system(size: 200))
-//                                .offset(y : 50)
-//                        }
-//                    }
-//            }
-//        }
-//    }
-//}
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {

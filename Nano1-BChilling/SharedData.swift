@@ -7,6 +7,8 @@
 
 import Foundation
 import CoreLocation
+import MapKit
+
 
 enum emotion {
     case blue
@@ -23,7 +25,38 @@ struct player {
     var emotion : emotion?
 }
 
-class PlayersData : ObservableObject {
+class PlayersData : NSObject, CLLocationManagerDelegate, ObservableObject {
+    
+    override init() {
+        super.init()
+        
+        manager.delegate = self
+        manager.desiredAccuracy = kCLLocationAccuracyBest
+        manager.requestWhenInUseAuthorization()
+        manager.startUpdatingLocation()
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        locations.last.map {
+            region = MKCoordinateRegion(
+                center: CLLocationCoordinate2D(latitude: $0.coordinate.latitude, longitude: $0.coordinate.longitude),
+                span: MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5)
+            )
+            
+        }
+    }
+    
+    //        locations.last?.coordinate.longitude ini lgsung pake map makanya jdi $0,
+    //        $0 == locations.last == CLLocation (sudah bukan array).
+            
+    //        Func ini akan dijalankan setiap kali ada location baru yang terdeteksi gitu
+    //    https://developer.apple.com/documentation/corelocation/cllocationmanagerdelegate
+        
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("Location Retrieval Error")
+        print(error.localizedDescription)
+    }
+    
     var chillSpot : [String : CLLocation] =
     [
         "Kumolo BSD" : CLLocation(latitude: -6.300620, longitude: 106.654335),
@@ -74,11 +107,13 @@ class PlayersData : ObservableObject {
         "Sinar Djaya" : CLLocation(latitude: -6.301985, longitude: 106.654779),
     ]
     
+    @Published var region = MKCoordinateRegion();
     @Published var idx = 1;
     @Published var firstPlayer : player = player();
     @Published var secondPlayer : player = player();
     @Published var thirdPlayer : player = player()
     
+    private let manager = CLLocationManager()
     var dominatingEmotion : emotion?
     
     @Published var spotAvailable : [String : CLLocation] = [:]
@@ -90,15 +125,7 @@ class PlayersData : ObservableObject {
         let players : [player] = [firstPlayer, secondPlayer, thirdPlayer];
         
         players.map({ x in
-            
-//                        switch x.emotion {
-//                            case .chill :
-//                                happy += 1
-//                            case .blue :
-//                                blue += 1
-//                            case .stress :
-//                                stress += 1
-//                        }
+
             if x.emotion == .chill {
                 happy += 1;
             } else if x.emotion == .blue {

@@ -181,15 +181,17 @@ struct MapView: UIViewRepresentable {
         let mapView = MKMapView()
         mapView.delegate = context.coordinator
         
-        let appleCoordinate = CLLocationCoordinate2D(latitude: -6.302230, longitude: 106.652264)
+//        let appleCoordinate = CLLocationCoordinate2D(latitude: -6.302230, longitude: 106.652264)
         
-        let region = MKCoordinateRegion(
-            center: appleCoordinate,
-            span: MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5))
+//        let region = MKCoordinateRegion(
+//            center: playerData.region,
+//            span: MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5))
+        
+        let region = playerData.region
         mapView.setRegion(region, animated: true)
         
-        // Apple Academy
-        let p1 = MKPlacemark(coordinate: appleCoordinate)
+        // Apple Academy (user place
+        let p1 = MKPlacemark(coordinate: playerData.region.center)
         
         // Breeze (nanti di-set pake sharedData aja sesuai tujuan)
         let p2 = MKPlacemark(coordinate: playerData.finalSpot.1.coordinate)
